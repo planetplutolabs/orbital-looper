@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="OrbLpr" name="Orbital Looper" projectType="audioplug"
+              useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="0"
+              jucerFormatVersion="1" version="1.0.0" bundleIdentifier="com.planetplutoeffects.OrbitalLooper"
+              companyName="Planet Pluto Effects" companyWebsite="https://planetplutolabs.github.io/planet-pluto-effects/"
+              companyEmail="planetplutolabs@gmail.com" pluginName="Orbital Looper"
+              pluginDesc="Multi-loop audio looper with MIDI foot controller integration"
+              pluginManufacturer="Planet Pluto Effects" pluginManufacturerCode="PPfx"
+              pluginCode="Orb1" aaxIdentifier="com.planetplutoeffects.OrbitalLooper"
+              pluginAUIMainType="'aufx'" pluginAAXCategory="2" pluginVST3Category="Fx"
+              pluginRTASCategory="2" pluginCharacteristicsValue="pluginWantsMidiIn"
+              pluginFormats="buildAU,buildVST3,buildStandalone">
+  <MAINGROUP id="kqBNpS" name="Orbital Looper">
+    <GROUP id="{DDFE9ECE-0D3E-8D39-CF75-09F4FD5C6A3D}" name="Source">
+      <GROUP id="{3C2A8E8F-0B82-6F52-E5B5-39C8D43A7E9C}" name="Core">
+        <FILE id="Cp1aBC" name="ClickPlayer.cpp" compile="1" resource="0" file="Source/Core/ClickPlayer.cpp"/>
+        <FILE id="Cp2dEF" name="ClickPlayer.h" compile="0" resource="0" file="Source/Core/ClickPlayer.h"/>
+        <FILE id="RJc8xL" name="LoopEngine.cpp" compile="1" resource="0" file="Source/Core/LoopEngine.cpp"/>
+        <FILE id="g8oVPM" name="LoopEngine.h" compile="0" resource="0" file="Source/Core/LoopEngine.h"/>
+        <FILE id="Mc1gHJ" name="MasterClock.cpp" compile="1" resource="0" file="Source/Core/MasterClock.cpp"/>
+        <FILE id="Mc2kLN" name="MasterClock.h" compile="0" resource="0" file="Source/Core/MasterClock.h"/>
+      </GROUP>
+      <GROUP id="{B4F3E2A1-9D5C-4F82-A6E3-C9F8D5E4A7B2}" name="UI">
+        <FILE id="LkF9dC" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/UI/LookAndFeel.cpp"/>
+        <FILE id="Mn3Ks2" name="LookAndFeel.h" compile="0" resource="0" file="Source/UI/LookAndFeel.h"/>
+        <FILE id="StW1aB" name="SettingsWindow.cpp" compile="1" resource="0" file="Source/UI/SettingsWindow.cpp"/>
+        <FILE id="StW2cD" name="SettingsWindow.h" compile="0" resource="0" file="Source/UI/SettingsWindow.h"/>
+      </GROUP>
+      <FILE id="sD9Lx3" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="pR8Km1" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="eD7Jn4" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="fE6Mp2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors_headless" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Orbital Looper"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Orbital Looper"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="/Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../../../../Applications/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

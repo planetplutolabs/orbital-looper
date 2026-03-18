@@ -1,0 +1,41 @@
+# Build output
+Builds/
+build/
+DerivedData/
+
+# Xcode
+*.xcuserdata/
+*.xcworkspace/
+xcuserdata/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xccheckout
+*.moved-aside
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Development files
+CLAUDE.md
+MANUAL.md
+test_build.sh
+TESTING_OPTIONS.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled objects
+*.o
+*.d
+*.dylib
+*.so
+*.a

@@ -437,6 +437,14 @@ Copyright 2026 Planet Pluto Labs. All rights reserved. See [LICENSE](LICENSE) fo
 
 ---
 
+## Support
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow?logo=buymeacoffee)](https://buymeacoffee.com/planetplutolabs)
+
+Your support keeps the Quantum Gamma Fusion Drive running.
+
+---
+
 ## Contact
 
 - Email: planetplutolabs@gmail.com

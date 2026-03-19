@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 project(OrbitalLooper VERSION 1.0.0)
 
-# If JUCE_DIR is set, use it. Otherwise look for system install.
 if(DEFINED JUCE_DIR)
     add_subdirectory(${JUCE_DIR} juce_build)
 else()
@@ -22,6 +21,9 @@ juce_add_plugin(OrbitalLooper
     EDITOR_WANTS_KEYBOARD_FOCUS FALSE
     COPY_PLUGIN_AFTER_BUILD FALSE)
 
+# Generate JuceHeader.h so existing source files with #include "JuceHeader.h" compile
+juce_generate_juce_header(OrbitalLooper)
+
 target_sources(OrbitalLooper
     PRIVATE
         Source/PluginProcessor.cpp
@@ -36,7 +38,8 @@ target_include_directories(OrbitalLooper
     PRIVATE
         Source
         Source/Core
-        Source/UI)
+        Source/UI
+        JuceLibraryCode)
 
 target_compile_definitions(OrbitalLooper
     PUBLIC

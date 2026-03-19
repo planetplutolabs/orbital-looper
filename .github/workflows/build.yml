@@ -6,32 +6,34 @@ on:
       - 'v*'
   workflow_dispatch:
 
+env:
+  JUCE_VERSION: "7.0.12"
+
 jobs:
   build-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install JUCE
         run: |
-          brew install cmake
-          git clone --branch 7.0.12 --depth 1 https://github.com/juce-framework/JUCE.git ~/JUCE
-      
-      - name: Configure CMake
+          git clone --branch ${{ env.JUCE_VERSION }} --depth 1 https://github.com/juce-framework/JUCE.git ${{ runner.temp }}/JUCE
+
+      - name: Configure
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=Release \
-            -DJUCE_DIR=~/JUCE \
-            -S .
-      
+            -DJUCE_DIR=${{ runner.temp }}/JUCE
+
       - name: Build
         run: cmake --build build --config Release
-      
+
       - name: Package
         run: |
-          cd build
-          zip -r ../OrbitalLooper-macOS.zip *.component *.vst3 || true
-          find . -name "*.component" -o -name "*.vst3" | head -20
-      
+          mkdir -p staging
+          find build -name "*.component" -type d -exec cp -r {} staging/ \;
+          find build -name "*.vst3" -type d -exec cp -r {} staging/ \;
+          cd staging && zip -r ../OrbitalLooper-macOS.zip . && cd ..
+
       - uses: actions/upload-artifact@v4
         with:
           name: macos-build
@@ -41,27 +43,25 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install JUCE
         run: |
-          git clone --branch 7.0.12 --depth 1 https://github.com/juce-framework/JUCE.git C:/JUCE
-      
-      - name: Configure CMake
+          git clone --branch ${{ env.JUCE_VERSION }} --depth 1 https://github.com/juce-framework/JUCE.git ${{ runner.temp }}/JUCE
+
+      - name: Configure
         run: |
-          cmake -B build -DCMAKE_BUILD_TYPE=Release `
-            -DJUCE_DIR=C:/JUCE `
-            -S .
-      
+          cmake -B build -DJUCE_DIR=${{ runner.temp }}/JUCE
+
       - name: Build
         run: cmake --build build --config Release
-      
+
       - name: Package
         shell: bash
         run: |
-          cd build
-          7z a ../OrbitalLooper-Windows.zip *.vst3 -r || true
-          find . -name "*.vst3" | head -20
-      
+          mkdir -p staging
+          find build -name "*.vst3" -type d -exec cp -r {} staging/ \;
+          cd staging && 7z a ../OrbitalLooper-Windows.zip . && cd ..
+
       - uses: actions/upload-artifact@v4
         with:
           name: windows-build
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -79,24 +79,26 @@ jobs:
             libcurl4-openssl-dev libfreetype6-dev libx11-dev \
             libxcomposite-dev libxcursor-dev libxext-dev \
             libxinerama-dev libxrandr-dev libxrender-dev \
-            libwebkit2gtk-4.0-dev libglu1-mesa-dev mesa-common-dev
-          git clone --branch 7.0.12 --depth 1 https://github.com/juce-framework/JUCE.git ~/JUCE
-      
-      - name: Configure CMake
+            libwebkit2gtk-4.1-dev libglu1-mesa-dev mesa-common-dev
+
+      - name: Install JUCE
+        run: |
+          git clone --branch ${{ env.JUCE_VERSION }} --depth 1 https://github.com/juce-framework/JUCE.git ${{ runner.temp }}/JUCE
+
+      - name: Configure
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=Release \
-            -DJUCE_DIR=~/JUCE \
-            -S .
-      
+            -DJUCE_DIR=${{ runner.temp }}/JUCE
+
       - name: Build
         run: cmake --build build --config Release
-      
+
       - name: Package
         run: |
-          cd build
-          zip -r ../OrbitalLooper-Linux.zip *.vst3 -r || true
-          find . -name "*.vst3" | head -20
-      
+          mkdir -p staging
+          find build -name "*.vst3" -type d -exec cp -r {} staging/ \;
+          cd staging && zip -r ../OrbitalLooper-Linux.zip . && cd ..
+
       - uses: actions/upload-artifact@v4
         with:
           name: linux-build

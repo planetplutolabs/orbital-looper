@@ -38,8 +38,8 @@ Download the latest release from the [Releases](https://github.com/planetplutola
 
 ## System Requirements
 
-- A DAW that supports AU or VST3 plugins
-- Tested with Reaper on macOS
+- A DAW that supports AU or VST3 plugins (macOS, Windows, Linux)
+- Built and tested on macOS with Reaper. Windows and Linux builds are provided but community-tested.
 
 ---
 
@@ -53,6 +53,21 @@ Copy the plugin to the appropriate system directory for your platform:
 |--------|-------------|
 | AU | `~/Library/Audio/Plug-Ins/Components/` |
 | VST3 | `~/Library/Audio/Plug-Ins/VST3/` |
+
+
+**Windows:**
+
+| Format | Install Path |
+|--------|-------------|
+| VST3 | `C:\Program Files\Common Files\VST3\` |
+
+**Linux:**
+
+| Format | Install Path |
+|--------|-------------|
+| VST3 | `~/.vst3/` |
+
+*Note: AU format is macOS only. Windows and Linux use VST3.*
 
 Rescan plugins in your DAW, then add Orbital Looper to an audio track.
 

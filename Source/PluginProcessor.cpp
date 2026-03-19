@@ -731,7 +731,7 @@ void OrbitalLooperAudioProcessor::getStateInformation(juce::MemoryBlock& destDat
     // v03.04.01 - CLICK TRACK
     obj->setProperty("clickTrackOn", (bool)clickTrackOn.load());
     obj->setProperty("clickVolume",  clickPlayer.getVolume());
-    obj->setProperty("accentMask",   (int64_t)accentMask.load());
+    obj->setProperty("accentMask",   (juce::int64)accentMask.load());
 
     if (currentSessionFile.existsAsFile())
         obj->setProperty("sessionFile", currentSessionFile.getFullPathName());
@@ -855,7 +855,7 @@ void OrbitalLooperAudioProcessor::setStateInformation(const void* data, int size
     if (state.hasProperty("clickVolume"))
         clickPlayer.setVolume(static_cast<float>(state["clickVolume"]));
     if (state.hasProperty("accentMask"))
-        accentMask.store(static_cast<uint32_t>(static_cast<int64_t>(state["accentMask"])));
+        accentMask.store(static_cast<uint32_t>(static_cast<juce::int64>(state["accentMask"])));
     else
         resetAccentMaskToDownbeats();
 
@@ -1295,7 +1295,7 @@ void OrbitalLooperAudioProcessor::saveGlobalDefaults()
     obj->setProperty("metronomeOn",    metronomeOn.load());
     obj->setProperty("clickTrackOn",   (bool)clickTrackOn.load());
     obj->setProperty("clickVolume",    clickPlayer.getVolume());
-    obj->setProperty("accentMask",     (int64_t)accentMask.load());
+    obj->setProperty("accentMask",     (juce::int64)accentMask.load());
     obj->setProperty("countInEnabled", countInEnabled.load());
     obj->setProperty("countInSeconds", countInSeconds);
 
@@ -1359,7 +1359,7 @@ void OrbitalLooperAudioProcessor::loadGlobalDefaults()
     if (state.hasProperty("clickVolume"))
         clickPlayer.setVolume(static_cast<float>(state["clickVolume"]));
     if (state.hasProperty("accentMask"))
-        accentMask.store(static_cast<uint32_t>(static_cast<int64_t>(state["accentMask"])));
+        accentMask.store(static_cast<uint32_t>(static_cast<juce::int64>(state["accentMask"])));
     if (state.hasProperty("countInEnabled"))
         countInEnabled.store(static_cast<bool>(state["countInEnabled"]));
     if (state.hasProperty("countInSeconds"))

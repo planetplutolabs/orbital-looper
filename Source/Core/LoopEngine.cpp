@@ -35,6 +35,7 @@ void LoopEngine::reset()
     state = LoopState::Stopped;
     loopLengthSamples = 0;
     recordPosition = 0;
+    playbackPosition = 0;
     loopBuffer.clear();
     overdubCount = 0;  // v01.07.02
     multiplier = MasterClock::LoopMultiplier::One;

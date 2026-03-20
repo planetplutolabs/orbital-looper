@@ -8,6 +8,20 @@ Built by [Planet Pluto Effects](https://planetplutolabs.github.io/planet-pluto-e
 
 ---
 
+![Main UI](screenshots/01-main-ui.png)
+*Default view with transport controls, metronome, and loop card.*
+
+![Recording](screenshots/04-recording.png)
+*Recording a loop with beat visualization and click track active.*
+
+![Playing](screenshots/05-playing.png)
+*Loop playback with progress bar and layer indicator.*
+
+![Overdubbing](screenshots/06-overdubbing.png)
+*Overdubbing a second layer onto an existing loop.*
+
+---
+
 ## Download
 
 Download the latest release from the [Releases](https://github.com/planetplutolabs/orbital-looper/releases) page.

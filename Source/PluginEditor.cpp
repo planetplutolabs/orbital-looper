@@ -920,10 +920,14 @@ OrbitalLooperAudioProcessorEditor::OrbitalLooperAudioProcessorEditor(
             beatVisualization->setAccentMask(audioProcessor.getAccentMask());
             beatVisualization->setShowAccentBars(false);
         }
-        // v03.06.01 — CLEAR also resets metronome to defaults (BPM=120, 4/4, ON)
+        // Reset master clock so next recording doesn't arm
+        audioProcessor.getMasterClock().reset();
+        audioProcessor.setMasterLoopIndex(-1);
+
+        // Reset metronome to defaults (BPM=120, 4/4, ON)
         audioProcessor.setBPM(120);
         bpmValueLabel.setText("120", juce::dontSendNotification);
-        applyTimeSig(4, 4);   // syncs processor, combo, beat viz accent mask
+        applyTimeSig(4, 4);
         if (!audioProcessor.getMetronomeOn())
         {
             audioProcessor.setMetronomeOn(true);
@@ -937,6 +941,8 @@ OrbitalLooperAudioProcessorEditor::OrbitalLooperAudioProcessorEditor(
             tapButton.setVisible(true);
             timeSigCombo.setVisible(true);
         }
+        if (beatVisualization != nullptr)
+            beatVisualization->setVisible(true);
         resized();
     };
     addAndMakeVisible(clearButton);
@@ -1381,10 +1387,7 @@ OrbitalLooperAudioProcessorEditor::OrbitalLooperAudioProcessorEditor(
     //==========================================================================
     // STATUS LABEL
     //==========================================================================
-    statusLabel.setFont(juce::Font(juce::FontOptions(13.0f)));
-    statusLabel.setColour(juce::Label::textColourId, OrbitalLooperLookAndFeel::getTextColour());
-    statusLabel.setJustificationType(juce::Justification::centred);
-    addAndMakeVisible(statusLabel);
+    statusLabel.setVisible(false);
 
     //==========================================================================
     // Wire MIDI-triggered add/delete to rebuild UI on message thread
@@ -2206,7 +2209,7 @@ void OrbitalLooperAudioProcessorEditor::resized()
 
     const int totalH = s(TOOLBAR_HEIGHT) + s(BASE_BTN_SIZE) + scaledCardGap
                      + s(METRONOME_CARD_H) + accentBarContrib + beatVizContrib + scaledCardGap
-                     + viewportH + s(ADD_LOOP_GAP) + s(ADD_LOOP_BTN_H) + s(STATUS_HEIGHT);
+                     + viewportH + s(ADD_LOOP_GAP) + s(ADD_LOOP_BTN_H);
 
     // Snap height
     if (getHeight() != totalH)
